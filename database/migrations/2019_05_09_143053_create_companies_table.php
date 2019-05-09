@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGuestsTable extends Migration
+class CreateCompaniesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,18 @@ class CreateGuestsTable extends Migration
      */
     public function up()
     {
-        Schema::create('guests', function (Blueprint $table) {
+        Schema::create('companies', function (Blueprint $table) {
             $table->bigIncrements('id');
-            //$table->unsignedInteger('')
-            $table->string('firstname');
-            $table->string('lastname');
-            $table->string('phone');
+            $table->unsignedInteger('user_id');
+            $table->string('company_name');
+            $table->string('company_id');
+            $table->string('company_phone')->default('ტელეფონი არ აქვს');
             $table->string('email');
-            $table->text('address');
+            $table->string('address');
             $table->unsignedInteger('city_id');
-            $table->dateTime('birthday');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -34,6 +35,6 @@ class CreateGuestsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('guests');
+        Schema::dropIfExists('companies');
     }
 }

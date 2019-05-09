@@ -17,8 +17,9 @@ class CreateRoomsTable extends Migration
             $table->bigIncrements('id');
             $table->string('room_number');
             $table->integer('guest_id');
-            $table->string('family_person');
-            $table->string('childrem_person')->nullable();
+            $table->string('family_person')->nullable();
+            $table->string('childrem_quantity')->nullable();
+            $table->string('eat_status')->default('no');
             $table->dateTime('start_time');
             $table->dateTime('end_time');
             $table->timestamps();
